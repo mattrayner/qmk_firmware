@@ -1,4 +1,6 @@
-# ErgoDox EZ Default Configuration
+# ErgoDox EZ Glow Layout for @mattrayner
+
+Base layer has an animation, with all other layers laking their individual key colours.
 
 ## Changelog
 
