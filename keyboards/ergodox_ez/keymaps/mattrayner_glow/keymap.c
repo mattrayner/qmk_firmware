@@ -23,7 +23,7 @@ enum custom_keycodes {
     CK_RGB_MODE, // Change RGB modes
 };
 
-#define DEFAULT_RBG_MODE 5
+#define DEFAULT_RBG_MODE 14 //5 = pink
 #define RGBLIGHT_MODES 21
 static uint8_t current_rgb_mode = DEFAULT_RBG_MODE;
 
@@ -53,6 +53,16 @@ static uint16_t current_rgb_val = 255;
 #define MEDIA_VUP KC_AUDIO_VOL_UP
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
+#define LUNA LALT(LGUI(LSFT(KC_L)))
+#define LUNA_0 LCTL(LGUI(KC_0))
+#define LUNA_1 LCTL(LGUI(KC_1))
+#define LUNA_2 LCTL(LGUI(KC_2))
+#define LUNA_3 LCTL(LGUI(KC_3))
+#define LUNA_4 LCTL(LGUI(KC_4))
+#define LUNA_BUP LCTL(KC_F2)
+#define LUNA_BDOWN LCTL(KC_F1)
+#define LUNA_CUP LCTL(LSFT(KC_F2))
+#define LUNA_CDOWN LCTL(LSFT(KC_F1))
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE] = LAYOUT_ergodox_pretty(
@@ -86,10 +96,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                                     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT
   ),
   [_ADJUST] = LAYOUT_ergodox_pretty(
-    TO(_BASE),      KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,                                          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,
-    KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_F14,         KC_NO,                                          KC_NO,          KC_F15,         KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_DELETE,
-    TO(_BASE),      KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,                                                                          KC_NO,          RGB_TOG,        CK_RGB_VAI,     CK_RGB_VAD,     KC_NO,          RESET,
-    KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,                                          KC_NO,          KC_NO,          CK_RGB_MODE,    CK_RGB_HUI,     CK_RGB_HUD,     KC_NO,          KC_NO,
+    TO(_BASE),      LUNA_1,         LUNA_2,         LUNA_3,         LUNA_4,         KC_NO,          KC_NO,                                          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          LUNA_0,
+    KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_F14,         LUNA_BDOWN,                                     LUNA_BUP,       KC_F15,         KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_DELETE,
+    TO(_BASE),      KC_NO,          KC_NO,          LUNA,           KC_NO,          KC_NO,                                                                          KC_NO,          RGB_TOG,        CK_RGB_VAI,     CK_RGB_VAD,     KC_NO,          RESET,
+    KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          LUNA_CDOWN,                                     LUNA_CUP,       KC_NO,          CK_RGB_MODE,    CK_RGB_HUI,     CK_RGB_HUD,     KC_NO,          KC_NO,
     KC_TRANSPARENT, KC_NO,          KC_NO,          KC_NO,          KC_TRANSPARENT,                                                                                                 KC_TRANSPARENT, KC_NO,          TOGGLE_LAYER_COLOR,LED_LEVEL,   KC_NO,
                                                                                                     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
                                                                                                                     KC_TRANSPARENT, KC_TRANSPARENT,
@@ -123,7 +133,7 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
 
 [2] = { {134,255,213}, {134,255,213}, {134,255,213}, {134,255,213}, {134,255,213}, {134,255,213}, {134,255,213}, {134,255,213}, {134,255,213}, {134,255,213}, {0,0,0}, {134,255,213}, {134,255,213}, {134,255,213}, {134,255,213}, {0,0,0}, {134,255,213}, {134,255,213}, {134,255,213}, {134,255,213}, {134,255,213}, {134,255,213}, {134,255,213}, {134,255,213}, {134,255,213}, {134,255,213}, {134,255,213}, {134,255,213}, {134,255,213}, {134,255,213}, {134,255,213}, {134,255,213}, {134,255,213}, {134,255,213}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {243,222,234}, {134,255,213}, {134,255,213}, {134,255,213} },
 
-[3] = { {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {10,225,255}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {10,225,255}, {10,225,255}, {10,225,255}, {0,0,0}, {0,0,0}, {10,225,255}, {10,225,255}, {10,225,255}, {0,0,0}, {0,0,0}, {0,0,0}, {10,225,255}, {10,225,255}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {10,225,255}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,255}, {0,0,0}, {0,0,0}, {0,0,0} },
+[3] = { {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {10,225,255}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {10,225,255}, {10,225,255}, {10,225,255}, {0,0,0}, {0,0,0}, {10,225,255}, {10,225,255}, {10,225,255}, {0,0,0}, {0,0,0}, {0,0,0}, {10,225,255}, {10,225,255}, {0,0,0}, {10,225,255}, {10,225,255}, {10,225,255}, {10,225,255}, {10,225,255}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {10,225,255}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {85,203,158}, {0,0,0}, {0,0,0}, {0,0,0} },
 
 [4] = { {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {85,203,158}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {85,203,158}, {85,203,158}, {85,203,158}, {85,203,158}, {85,203,158}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {85,203,158}, {85,203,158}, {85,203,158}, {0,0,0}, {0,0,0}, {85,203,158}, {85,203,158}, {85,203,158}, {0,0,0}, {0,0,0}, {0,0,0}, {85,203,158}, {0,0,0}, {243,222,234}, {85,203,158}, {85,203,158}, {85,203,158} },
 
